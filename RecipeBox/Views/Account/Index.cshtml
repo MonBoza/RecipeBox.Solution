@@ -1,0 +1,17 @@
+<h2>Authentication with Identity</h2>
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+  <p>Hello, @User.Identity.Name! </p>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" class="btn btn-default" value="Log out"/>
+  }
+}
+else
+{
+  <button>@Html.ActionLink("Register", "Register")</button>
+  <button>@Html.ActionLink("Log in", "Login")</button>
+}
+<button>@Html.ActionLink("Home", "Index", "Home")</button>
