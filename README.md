@@ -1,6 +1,6 @@
 # Recipe Box
 
-## An MVC web application to manage a Recipe's and their ingredients
+## An MVC web application to manage  Recipes and their ingredients
 
 ### By Monica Barboza and Brianca Knight
 
@@ -97,9 +97,8 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Email: (mailto:<MonBoza@gmail.com>)
+Email: (mailto: )
 
 Copyright (c) February 12, 2024 Monica Barboza
 
 ### SQL Schema Diagram
-
-<img src="image.png" alt="Schema Diagram" width="500px" />
