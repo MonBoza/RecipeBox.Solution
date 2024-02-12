@@ -2,7 +2,23 @@
 
  <h1>Welcome to Recipe Box!</h1>
    
+
+
+
+@if (User.Identity.IsAuthenticated)
+{
 <button>@Html.ActionLink("See Recipes", "Index", "Recipes")</button>
 <button>@Html.ActionLink("See Tags", "Index", "Tags")</button>
+
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    <input type="submit" class="btn btn-default" value="Log out"/>
+  }
+}
+else
+{
+  <h4>Please log in or create an account.</h4>
+}
+<hr/>
 <button>@Html.ActionLink("Register", "Register", "Account")</button>
 <button>@Html.ActionLink("Log in", "Login", "Account")</button>

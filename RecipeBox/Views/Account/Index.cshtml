@@ -1,4 +1,4 @@
-<h2>Authentication with Identity</h2>
+<h2>Your Account Details:</h2>
 <hr />
 
 @if (User.Identity.IsAuthenticated)
@@ -11,6 +11,7 @@
 }
 else
 {
+  <h4>You're currently logged out. Log back in to see account details.</h4>
   <button>@Html.ActionLink("Register", "Register")</button>
   <button>@Html.ActionLink("Log in", "Login")</button>
 }
