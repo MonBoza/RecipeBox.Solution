@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-// change the namespace to match the name of your project
-namespace ProjectName.Controllers
+namespace RecipeBox.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,8 +1,8 @@
-# Eau Claire's Hair Salon
+# Recipe Box
 
-## An MVC web application to manage a hair salon employees and their clients
+## An MVC web application to manage a Recipe's and their ingredients
 
-### By Monica Barboza
+### By Monica Barboza and Brianca Knight
 
 ## Technologies Used
 
@@ -16,28 +16,6 @@
 * ASP Core MVC MSBuild
 
 ## Description
-
-How to Use:
-
-Stylist Management:
-
-* Add new stylists by providing their name and specialties.
-* Edit existing stylist details as needed.
-
-Client Management:
-
-* Add clients with their names, notes, and link them to specific stylists.Update client information as preferences or details change.
-
-Search Function:
-
-* Use the search bar to quickly find clients based on keywords.
-* Enhance customer service by retrieving relevant information efficiently.
-
-Notes Section:
-
-* Leave and view notes for each client to personalize their salon experience.
-
-This salon management application is tailored to meet the unique needs of salon owners, providing a comprehensive solution for effective stylist and client management. Stay organized, enhance customer satisfaction, and elevate your salon operations with our user-friendly platform.
 
 ## Setup/Installation Requirements
 
@@ -110,7 +88,7 @@ To run this application you need to import the `monica_barboza.sql` file located
 
 ## License
 
-Copyright 2024 MONICA BARBOZA
+Copyright 2024 MONICA BARBOZA and BRIANCA KNIGHT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -120,7 +98,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 Email: (mailto:<MonBoza@gmail.com>)
 
-Copyright (c) February 02, 2024 Monica Barboza
+Copyright (c) February 12, 2024 Monica Barboza
 
 ### SQL Schema Diagram
 
