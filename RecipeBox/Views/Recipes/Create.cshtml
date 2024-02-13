@@ -1,0 +1,26 @@
+@model RecipeBox.Models.Recipe
+
+<h4>Add a new Recipe</h4>
+
+<p>@Html.ValidationMessageFor(model => model.RecipeName, "", new {@class="text-danger", @style="font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(model => model.Ingredients, "", new {@class="text-danger", @style="font-weight: 600;"})</p>
+<p>@Html.ValidationMessageFor(model => model.Instructions, "", new {@class="text-danger", @style="font-weight: 600;"})</p>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.RecipeName)
+  @Html.TextBoxFor(model => model.RecipeName)
+
+  @Html.LabelFor(model => model.Ingredients)
+  @Html.TextAreaFor(model => model.Ingredients)
+
+  @Html.LabelFor(model => model.Instructions)
+  @Html.TextAreaFor(model => model.Instructions)
+
+  @Html.LabelFor(model => model.Rating)
+  @Html.DropDownListFor(model => model.Rating, new SelectList(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }))
+
+  <input type="submit" value="Add new Recipe", class="btn btn-default">
+}
+
+<button>@Html.ActionLink("Show all Recipes", "Index")</button>
