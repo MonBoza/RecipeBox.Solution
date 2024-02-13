@@ -1,0 +1,31 @@
+@using RecipeBox.Models
+@model RecipeBox.Models.Recipe
+
+<h2>Recipe Details<h2>
+    <hr />
+    <h3>@Model.RecipeName Details</h3>
+
+    @if (@Model.JoinEntities.Count == 0)
+    {
+      <h5>This Recipe does not belong to any Tags.</h5>
+    }
+    else
+    {
+      <h5>Tags for this Recipe:</h5>
+      @foreach (RecipeTag join in Model.JoinEntities)
+      {
+        <li>@join.Tag.TagName</li>
+
+        @using (Html.BeginForm("DeleteJoin", "Recipe"))
+        {
+          @Html.Hidden("joinId", @join.RecipeTagId)
+          <input type="submit" value="Delete" />
+        }
+      }
+    }
+
+
+    <button>@Html.ActionLink("Back to list", "Index")</button>
+    <button>@Html.ActionLink("Add a Recipe", "AddRecipe", new { id = Model.RecipeId })</button>
+    <button>@Html.ActionLink("Edit this Recipe", "Edit", new { id = Model.RecipeId })</button>
+    <button>@Html.ActionLink("Delete this Recipe", "Delete", new { id = Model.RecipeId })</button>

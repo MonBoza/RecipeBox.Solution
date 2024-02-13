@@ -1,0 +1,27 @@
+@model RecipeBox.Models.Recipe
+
+<h3>Edit</h3>
+
+<h4>Edit this Recipe: @Model.RecipeName</h4>
+
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RecipeId)
+
+  @Html.LabelFor(model => model.RecipeName)
+  @Html.EditorFor(model => model.RecipeName)
+
+  @Html.LabelFor(model => model.Ingredients)
+  @Html.EditorFor(model => model.Ingredients)
+
+  @Html.LabelFor(model => model.Instructions)
+  @Html.EditorFor(model => model.Instructions)
+
+  @Html.LabelFor(model => model.Rating)
+  @Html.DropDownListFor(model => model.Rating, new SelectList(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }))
+
+  <input type="submit" value="Save" />
+}
+
+<button>@Html.ActionLink("Back to list", "Index")</button>

@@ -1,5 +1,6 @@
 @using RecipeBox.Models;
 
+
 <h1>Recipes in @User.Identity.Name's Box</h1>
 
 @if (Model.Count == 0)
@@ -10,9 +11,9 @@ else
 {
   <ul>
   @foreach (Recipe recipe in Model)
-  {
-    <li>@Html.ActionLink($"{recipe.RecipeName}", "Details", new { id = recipe.RecipeId }) | </li>
-  }
+    {
+      <li>@Html.ActionLink($"{recipe.RecipeName}", "Details", new { id = recipe.RecipeId })</li>
+    }
   </ul>
 }
 

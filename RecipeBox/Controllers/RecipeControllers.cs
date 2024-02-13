@@ -30,34 +30,77 @@ namespace RecipeBox.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       List<Recipe> userRecipes = _db.Recipes
                                     .Where(entry => entry.User.Id == currentUser.Id)
-    
+
                                     .ToList();
       return View(userRecipes);
     }
 
     public ActionResult Create()
-   {
-     ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
-     return View();
-   }
+    {
+      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
+      return View();
+    }
 
 
-   [HttpPost]
-   public async Task<ActionResult> Create(Recipe recipe)
-   {
-     if (!ModelState.IsValid)
-     {
-       return View(recipe);
-     }
-     else
-     {
-       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
-       recipe.User = currentUser;
-       _db.Recipes.Add(recipe);
-       _db.SaveChanges();
-       return RedirectToAction("Index");
-     }
-   }
+    [HttpPost]
+    public async Task<ActionResult> Create(Recipe recipe)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View(recipe);
+      }
+      else
+      {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+        recipe.User = currentUser;
+        _db.Recipes.Add(recipe);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+    }
+    public ActionResult Details(int id)
+    {
+      Recipe thisRecipe = _db.Recipes
+                                  .Include(Recipe => Recipe.JoinEntities)
+                                  .ThenInclude(join => join.Tag)
+                                  .FirstOrDefault(recipe => recipe.RecipeId == id);
+      return View(thisRecipe);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+      return View(thisRecipe);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Recipe recipe)
+    {
+      _db.Recipes.Update(recipe);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+      return View(thisRecipe);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+      _db.Recipes.Remove(thisRecipe);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    publiActionResult AddTag(int id)
+    {
+      Recipe thisRecipe = _d
+    }
+    R
   }
 }
