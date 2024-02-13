@@ -1,0 +1,24 @@
+@using RecipeBox.Models
+@model RecipeBox.Models.Tag
+
+<h2>Tag Details<h2>
+<hr />
+<h3>@Model.TagName Details</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <h5>This tag does not have any Recipes.</h5>
+}
+else
+{
+  <h5>Recipes in this Tag:</h5>
+  @foreach(RecipeTag join in Model.JoinEntities)
+  {
+    <li>@join.Recipe.RecipeName</li>
+  }
+}
+
+
+<button>@Html.ActionLink("Back to list", "Index")</button>
+<button>@Html.ActionLink("Add a Recipe", "AddRecipe", new { id= Model.TagId})</button>
+<button>@Html.ActionLink("Edit this Tag", "Edit", new { id= Model.TagId})</button>
