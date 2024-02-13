@@ -97,10 +97,25 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
-    publiActionResult AddTag(int id)
+    public ActionResult AddTag(int id)
     {
-      Recipe thisRecipe = _d
+      Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
+      return View(thisRecipe);
     }
-    R
+
+    [HttpPost]
+    public ActionResult AddTag(Recipe recipe, int tagId)
+    {
+#nullable enable
+      RecipeTag? joinEntity = _db.RecipeTags.FirstOrDefault(join => (join.TagId == tagId && join.RecipeId == recipe.RecipeId));
+#nullable disable
+      if (joinEntity == null && tagId != 0)
+      {
+        _db.RecipeTags.Add(new RecipeTag() { TagId = tagId, RecipeId = recipe.RecipeId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = recipe.RecipeId });
+    }
   }
 }
