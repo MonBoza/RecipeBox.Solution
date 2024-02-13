@@ -30,24 +30,34 @@ namespace RecipeBox.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       List<Recipe> userRecipes = _db.Recipes
                                     .Where(entry => entry.User.Id == currentUser.Id)
-                                    .Include(recipe => recipe.Tag)
+    
                                     .ToList();
       return View(userRecipes);
     }
 
     public ActionResult Create()
-    {
-      return View();
-    }
-
-    [HttpPost]
-    public ActionResult Create(Recipe rec)
-    {
-      _db.Tags.Add(tag);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+   {
+     ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
+     return View();
+   }
 
 
+   [HttpPost]
+   public async Task<ActionResult> Create(Recipe recipe)
+   {
+     if (!ModelState.IsValid)
+     {
+       return View(recipe);
+     }
+     else
+     {
+       string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+       recipe.User = currentUser;
+       _db.Recipes.Add(recipe);
+       _db.SaveChanges();
+       return RedirectToAction("Index");
+     }
+   }
   }
 }
