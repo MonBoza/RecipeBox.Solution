@@ -1,0 +1,6 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 255, 255, 0.137);
+  margin: 0 40%;
+}

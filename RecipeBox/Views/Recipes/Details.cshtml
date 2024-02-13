@@ -4,6 +4,10 @@
 <h2>Recipe Details<h2>
     <hr />
     <h3>@Model.RecipeName Details</h3>
+    <h4>Ingredients: @Model.Ingredients</h4>
+    <h4>Instructions: @Model.Instructions</h4>
+    <h4>Rating: @Model.Rating</h4>
+   
 
     @if (@Model.JoinEntities.Count == 0)
     {
@@ -11,10 +15,11 @@
     }
     else
     {
+      <div class="card">
       <h5>Tags for this Recipe:</h5>
       @foreach (RecipeTag join in Model.JoinEntities)
       {
-        <li>@join.Tag.TagName</li>
+        <p>@Html.ActionLink($"{join.Tag.TagName}", "Details", "Tags", new { id = join.Tag.TagId})</p>
 
         @using (Html.BeginForm("DeleteJoin", "Recipe"))
         {
@@ -23,9 +28,11 @@
         }
       }
     }
+    </div>
 
 
     <button>@Html.ActionLink("Back to list", "Index")</button>
-    <button>@Html.ActionLink("Add a Recipe", "AddRecipe", new { id = Model.RecipeId })</button>
+    <button>@Html.ActionLink("Add a Recipe", "Create", new { id = Model.RecipeId })</button>
     <button>@Html.ActionLink("Edit this Recipe", "Edit", new { id = Model.RecipeId })</button>
     <button>@Html.ActionLink("Delete this Recipe", "Delete", new { id = Model.RecipeId })</button>
+    <button>@Html.ActionLink("Add a Tag", "AddTAg", new { id= Model.RecipeId})</button>
