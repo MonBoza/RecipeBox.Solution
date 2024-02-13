@@ -1,0 +1,25 @@
+<h2>Search:</h2>
+
+@using (Html.BeginForm("Results", "Search", FormMethod.Post))
+{
+  <div class="search">
+  <div>
+    <label for="query">Search Query:</label>
+    <input type="text" name="query" id="query" required />
+  </div>
+
+  <div>
+    <label for="searchType">Search Type:</label>
+    <select name="searchType" id="searchType">
+      <option value="Recipe">Recipes</option>
+      <option value="Tag">Tags</option>
+    </select>
+  </div>
+
+  <div>
+    <input type="submit" value="Search" />
+  </div>
+</div>
+}
+
+<button>@Html.ActionLink("Return Home", "Index", "Home")</button>
