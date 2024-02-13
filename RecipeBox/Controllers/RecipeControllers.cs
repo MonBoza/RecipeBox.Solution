@@ -41,20 +41,12 @@ namespace RecipeBox.Controllers
       return View();
     }
 
-    // [HttpPost]
-    // public ActionResult Create(Recipe recipe)
-    // {
-    //   _db.Recipes.Add(recipe);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
-
     [HttpPost]
     public async Task<ActionResult> Create(Recipe recipe)
     {
       if (!ModelState.IsValid)
       {
-        ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
+        // ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
         return View(recipe);
       }
       else
