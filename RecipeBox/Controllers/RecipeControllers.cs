@@ -29,6 +29,7 @@ namespace RecipeBox.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       List<Recipe> userRecipes = _db.Recipes
                                     .Where(entry => entry.User.Id == currentUser.Id)
+                                    .OrderByDescending(recipe => recipe.Rating)
                                     .ToList();
       return View(userRecipes);
     }
@@ -95,7 +96,6 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
     public ActionResult AddTag(int id)
     {
       Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
@@ -116,7 +116,7 @@ namespace RecipeBox.Controllers
       }
       return RedirectToAction("Details", new { id = recipe.RecipeId });
     }
-
+    
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {

@@ -1,1 +1,6 @@
-<div id="footer">footer</div>
+<div id="footer">
+@using (Html.BeginForm("LogOff", "Account"))
+{
+  <input type="submit" class="btn btn-default" value="Log out"/>
+}
+</div>
