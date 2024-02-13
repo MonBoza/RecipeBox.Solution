@@ -5,34 +5,58 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace RecipeBox.Controllers
 {
+  [Authorize]
   public class TagsController : Controller
   {
     private readonly RecipeBoxContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public TagsController(RecipeBoxContext db)
+    public TagsController(UserManager<ApplicationUser> userManager, RecipeBoxContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View(_db.Tags.ToList());
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      List<Tag> userTags = _db.Tags
+                                .Where(entry => entry.User.Id == currentUser.Id)
+                                .ToList();
+      return View(userTags);
     }
 
     public ActionResult Create()
     {
+      ViewBag.RecipeId = new SelectList(_db.Recipes, "RecipeId", "RecipeName");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Tag tag)
+    public async Task<ActionResult> Create(Tag tag, int RecipeId)
     {
-      _db.Tags.Add(tag);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      if (!ModelState.IsValid)
+      {
+        ViewBag.RecipeId = new SelectList(_db.Recipes, "RecipeId", "RecipeName");
+        return View(tag);
+      }
+      else
+      {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+        tag.User = currentUser;
+        _db.Tags.Add(tag);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+
+      }
     }
 
     public ActionResult Details(int id)
@@ -82,16 +106,17 @@ namespace RecipeBox.Controllers
     [HttpPost]
     public ActionResult AddRecipe(Tag tag, int recipeId)
     {
-      #nullable enable
+#nullable enable
       RecipeTag? joinEntity = _db.RecipeTags.FirstOrDefault(join => (join.RecipeId == recipeId && join.TagId == tag.TagId));
-      #nullable disable
+#nullable disable
       if (joinEntity == null && recipeId != 0)
       {
-        _db.RecipeTags.Add(new RecipeTag() { RecipeId = recipeId, TagId = tag.TagId});
+        _db.RecipeTags.Add(new RecipeTag() { RecipeId = recipeId, TagId = tag.TagId });
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = tag.TagId });
     }
+
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {

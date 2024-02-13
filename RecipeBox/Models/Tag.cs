@@ -10,5 +10,6 @@ namespace RecipeBox.Models
     [Required(ErrorMessage ="Please enter a tag name")]
     public string TagName {get; set;}
     public List<RecipeTag> JoinEntities { get; }
+    public ApplicationUser User { get; set; }
   }
 }

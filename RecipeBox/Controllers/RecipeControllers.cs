@@ -29,7 +29,6 @@ namespace RecipeBox.Controllers
       ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
       List<Recipe> userRecipes = _db.Recipes
                                     .Where(entry => entry.User.Id == currentUser.Id)
-
                                     .ToList();
       return View(userRecipes);
     }
@@ -46,6 +45,7 @@ namespace RecipeBox.Controllers
     {
       if (!ModelState.IsValid)
       {
+        ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
         return View(recipe);
       }
       else
@@ -116,6 +116,7 @@ namespace RecipeBox.Controllers
       }
       return RedirectToAction("Details", new { id = recipe.RecipeId });
     }
+
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
