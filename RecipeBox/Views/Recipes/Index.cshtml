@@ -1,0 +1,20 @@
+@using RecipeBox.Models;
+
+<h1>Recipes in @User.Identity.Name's Box</h1>
+
+@if (Model.Count == 0)
+{
+  <h3>No recipes have been added yet!</h3>
+}
+else
+{
+  <ul>
+  @foreach (Recipe recipe in Model)
+  {
+    <li>@Html.ActionLink($"{recipe.RecipeName}", "Details", new { id = recipe.RecipeId }) | @recipe.Tag.TagName </li>
+  }
+  </ul>
+}
+
+<button>@Html.ActionLink("Add a new recipe", "Create")</button>
+<button>@Html.ActionLink("Home", "Index", "Home")</button>
