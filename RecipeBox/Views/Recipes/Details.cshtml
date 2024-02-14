@@ -23,7 +23,7 @@
           <div style="display: flex; align-items: center; justify-content: space-between">
             <p>@Html.ActionLink($"{join.Tag.TagName}", "Details", "Tags", new { id = join.Tag.TagId })</p>
 
-            @using (Html.BeginForm("DeleteJoin", "Recipe"))
+            @using (Html.BeginForm("DeleteJoin", "Recipes"))
             {
               @Html.Hidden("joinId", @join.RecipeTagId)
               <input type="submit" value="Delete" />
