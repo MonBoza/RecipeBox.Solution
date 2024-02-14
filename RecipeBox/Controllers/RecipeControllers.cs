@@ -96,10 +96,15 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult AddTag(int id)
+    public async Task<ActionResult> AddTag(int id)
     {
       Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
-      ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+      List<Tag> userTag = _db.Tags
+                                          .Where(entry => entry.User.Id == currentUser.Id)
+                                          .ToList();
+      ViewBag.TagId = new SelectList(_db.Tags.Where(entry => entry.User.Id == currentUser.Id), "TagId", "TagName");
       return View(thisRecipe);
     }
 
@@ -116,7 +121,7 @@ namespace RecipeBox.Controllers
       }
       return RedirectToAction("Details", new { id = recipe.RecipeId });
     }
-    
+
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
