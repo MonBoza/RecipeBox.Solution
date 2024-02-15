@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
+
 .card {
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 255, 255, 0.137);
-  margin: 0 40%;
+  background-color: #F5CDA7;
+  margin: 0 30%;
+  background-size: cover;
+  padding: 5%;
 }
 
 div#footer {
@@ -13,4 +17,66 @@ div#footer {
   background-color: rgba(0, 255, 255, 0.137);
   color: white;
   text-align: center;
+}
+
+body {
+  background-color: #FAEDCA;
+  color: #124039;
+}
+
+.header {
+  background: #faa38186;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+  margin-left: auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 50px;
+  font-family: "Zeyada";
+  text-decoration: none;
+  color: #124039;
+  margin-top: 30px;
+  margin-left: 25px;
+
+}
+
+h2,
+h1 {
+  font-family: "Zeyada";
+  font-size: xx-large;
+  text-align: center;
+}
+
+button {
+  color: #124039;
+  background-color: #C9DBBA;
+}
+
+a {
+  color: #124039;
+  text-decoration: none;
+}
+
+input {
+  color: #124039;
+  background-color: #C9DBBA;
+}
+
+.container {
+  background-size: cover;
+  margin: 0 30%;
+  background-image: url('./../img/indexCard.png');
+  background-repeat: no-repeat;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 3%;
 }

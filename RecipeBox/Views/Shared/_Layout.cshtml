@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  @await Html.PartialAsync("_Header")
+  <br>
   @RenderBody()
   @await Html.PartialAsync("_Footer")
 </body>

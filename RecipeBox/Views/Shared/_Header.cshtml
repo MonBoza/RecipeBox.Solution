@@ -1,0 +1,25 @@
+<div class="header">
+
+   <h1><a href="/"class="title">Recipe Box</a></h1>
+
+  <div class="navigation">
+    <button>@Html.ActionLink("Search", "Index", "Search")</button>
+    <button>@Html.ActionLink("View Tags", "Index", "Tags")</button>
+    <button>@Html.ActionLink("View Recipes", "Index", "Recipes")</button>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div>@using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" class="btn btn-default" value="Log out" />
+      }
+    </div>
+}
+else
+{
+   <button>@Html.ActionLink("Log in", "Login", "Account")</button>
+}
+
+</div>
+
+</div>

@@ -1,6 +1,6 @@
 @model RecipeBox.Models.Recipe
 
-<h4>Add a new Recipe</h4>
+<h2>Add a new Recipe</h2>
 
 <p>@Html.ValidationMessageFor(model => model.RecipeName, "", new {@class="text-danger", @style="font-weight: 600;"})</p>
 <p>@Html.ValidationMessageFor(model => model.Ingredients, "", new {@class="text-danger", @style="font-weight: 600;"})</p>
