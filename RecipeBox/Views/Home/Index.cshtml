@@ -5,11 +5,9 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-<button>@Html.ActionLink("See Recipes", "Index", "Recipes")</button>
-<button>@Html.ActionLink("See Tags", "Index", "Tags")</button>
+<div style="text-align: center;">
 <button>@Html.ActionLink("See Account Details", "Index", "Account")</button>
-<button>@Html.ActionLink("Search", "Index", "Search")</button>
-
+</div>
 <hr/>
 
 
@@ -22,4 +20,3 @@ else
   <button>@Html.ActionLink("Register", "Register", "Account")</button>
   <button>@Html.ActionLink("Log in", "Login", "Account")</button>
 }
-

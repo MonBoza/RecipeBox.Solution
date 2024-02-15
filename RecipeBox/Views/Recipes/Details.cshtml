@@ -2,21 +2,23 @@
 @model RecipeBox.Models.Recipe
 
 <h2>Recipe Details<h2>
-    <hr />
+
+<div class="container">
     <h3>@Model.RecipeName Details</h3>
     <h4>Ingredients: @Model.Ingredients</h4>
     <h4>Instructions: @Model.Instructions</h4>
     <h4>Rating: @Model.Rating</h4>
+    </div>
 
-
+  <div class="card">
     @if (@Model.JoinEntities.Count == 0)
     {
       <h5>This Recipe does not belong to any Tags.</h5>
     }
     else
     {
-      <div class="card">
-        <h5>Tags for this Recipe:</h5>
+    
+        <h3>Tags for this Recipe:</h3>
 
         @foreach (RecipeTag join in Model.JoinEntities)
         {
@@ -30,9 +32,11 @@
             }
           </div>
         }
-      </div>
     }
+  </div>
 
+<br />
+<br />
 
 
     <button>@Html.ActionLink("Back to list", "Index")</button>

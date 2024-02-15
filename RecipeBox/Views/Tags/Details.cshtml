@@ -3,7 +3,8 @@
 
 <h2>Tag Details<h2>
     <hr />
-    <h3>@Model.TagName Details</h3>
+    
+    <h2>@Model.TagName</h2>
 
     @if (@Model.JoinEntities.Count == 0)
     {
@@ -12,7 +13,7 @@
     else
     {
       <div class="card">
-      <h5>Recipes in this Tag:</h5>
+      <h3>Recipes in this Tag:</h3>
 
         @foreach (RecipeTag join in Model.JoinEntities)
         {
